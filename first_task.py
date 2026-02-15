@@ -2,7 +2,7 @@ def caching_fibonacci():  # Вертає функцію fibonacci
     cash = {}
 
     def fibonacci(n):
-        print(f"Викликаємо fibonacci({n}), кеш: {cash}")
+        # print(f"Викликаємо fibonacci({n}), кеш: {cash}")
 
         if n <= 1:
             return n

@@ -14,6 +14,9 @@ def input_error(func):
 
 
 def parse_input(user_input):
+    if user_input == '':
+        return '', []  # Повертаємо пусту команду і пустий список
+
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
@@ -41,10 +44,12 @@ def phone_username(args, contacts):
     name = args[0]
     if name in contacts:
         return contacts[name]
+    else:
+        return f"Contact {name} not found."
 
 
 @input_error
-def show_phone(contacts):
+def show_all(contacts):
     return contacts
 
 
@@ -52,7 +57,7 @@ def main():
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
-        user_input = input("Enter a command: available command: add, change, phone, show: ").strip().lower()
+        user_input = input("Enter a command: available command: add, change, phone, all: ").strip().lower()
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
@@ -67,8 +72,8 @@ def main():
             print(change_contact(args, contacts))
         elif command == 'phone'.lower():
             print(phone_username(args, contacts))
-        elif command == 'show'.lower():
-            print(show_phone(contacts))
+        elif command == 'all'.lower():
+            print(show_all(contacts))
         else:
             print("Invalid command.")
 

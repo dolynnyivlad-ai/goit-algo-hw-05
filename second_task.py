@@ -8,11 +8,11 @@ text = '''
 
 
 def generator_numbers(text: str):
-    pattern = r'\d+\.?\d+'
+    pattern = r'\s\d+\.?\d+\s'
     numb = re.findall(pattern, text)
 
     for num in numb:
-        yield float(num)
+        yield float(num.strip())
 
 
 def sum_profit(text: str, func: Callable):
